@@ -13,6 +13,7 @@ const DigitalProducts = () => {
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
+          type: newProductType,
           name: newProductName,
           description: newProductDescription,
           price: newProductPrice,
@@ -40,6 +41,7 @@ const DigitalProducts = () => {
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [newProductType, setNewProductType] = useState('');
   const [newProductName, setNewProductName] = useState('');
   const [newProductDescription, setNewProductDescription] = useState('');
   const [newProductPrice, setNewProductPrice] = useState('');
@@ -80,6 +82,7 @@ const DigitalProducts = () => {
 
   const handleCloseModal = () =>{
      setShowModal(false);
+     setNewProductType('');
      setNewProductName('');
      setNewProductDescription('');
      setNewProductPrice('');
@@ -107,6 +110,10 @@ const DigitalProducts = () => {
            <div className="bg-white p-6 rounded-md shadow">
              <h2 className="text-xl font-bold mb-4">Add New Product</h2>
              <form onSubmit={handleSubmit}>
+               <div className="mb-4">
+                 <label htmlFor="name" className="block text-gray-700 font-bold mb-2">Type:</label>
+                 <input type="text" id="name" name="name" value={newProductType} onChange={(e) => setNewProductType(e.target.value)} className="w-full border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500" required />
+               </div>
                <div className="mb-4">
                  <label htmlFor="name" className="block text-gray-700 font-bold mb-2">Name:</label>
                  <input type="text" id="name" name="name" value={newProductName} onChange={(e) => setNewProductName(e.target.value)} className="w-full border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500" required />
